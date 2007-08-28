@@ -72,7 +72,6 @@ install %{SOURCE3} -D -m 644 $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=Nxtvepg
 Comment=NexTView EPG decoder and browser
 Exec=%{_bindir}/%{name} 
