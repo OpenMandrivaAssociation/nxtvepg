@@ -19,6 +19,7 @@ BuildRequires:	X11-devel
 BuildRequires:  tk tk-devel
 BuildRequires:  tcl tcl-devel
 Requires: tcl tk
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 This is a decoder and browser for nexTView - an Electronic TV Programme Guide
