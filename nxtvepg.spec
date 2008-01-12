@@ -1,24 +1,23 @@
-%define name	nxtvepg
-%define Name	Nxtvepg
-%define summary NexTView EPG decoder and browser	
-%define version 2.7.7
-%define release %mkrel 2
+%define tclver	8.5	
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Summary:	%{summary}
-License:	GPL
-Source0:	%{name}-%{version}.tar.bz2
+Name:		nxtvepg
+Version:	2.8.0
+Release:	%mkrel 1
+Summary:	NexTView EPG decoder and browser
+License:	GPLv2+
+Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}-icon-16.png
 Source2:	%{name}-icon-32.png
 Source3:	%{name}-icon-48.png
-URL:		http://prdownloads.sourceforge.net/nxtvepg/%{name}-%{version}.tar.bz2
+URL:		http://nxtvepg.sourceforge.net/
 Group:		Video	
 BuildRequires:	X11-devel 
-BuildRequires:  tk tk-devel
-BuildRequires:  tcl tcl-devel
-Requires: tcl tk
+BuildRequires:	tk
+BuildRequires:	tk-devel
+BuildRequires:	tcl
+BuildRequires:	tcl-devel
+Requires:	tcl
+Requires:	tk
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
@@ -39,38 +38,31 @@ almost useless to you, except for a demo mode. For more details please
 refer to the documentation in the "Help" menus or the UNIX manual page.
 
 %prep
-
 %setup -q
 
-# lib64 fix
-perl -pi -e "s|%{_prefix}/X11R6/lib|%{_prefix}/X11R6/%{_lib}|g" Makefile
-
 %build
-make prefix="%{prefix}"
+make prefix="%{prefix}" TCL_VER=%{tclver}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+export resdir=%{buildroot}%{_libdir}/X11/
+make prefix=%{buildroot}%{_prefix} resdir=%{buildroot}%{_libdir}/X11/ mandir=%{buildroot}%{_mandir}/man1 install 
 
-export resdir=$RPM_BUILD_ROOT%{_prefix}/X11R6/%{_lib}/X11/
-
-make prefix=$RPM_BUILD_ROOT%_prefix resdir=$RPM_BUILD_ROOT%{_prefix}/X11R6/%{_lib}/X11/ mandir=$RPM_BUILD_ROOT%_mandir/man1 install 
-
-strip  %{buildroot}%{_bindir}/nxtvepg
+strip %{buildroot}%{_bindir}/nxtvepg
 chmod 644 CHANGES README
 install -d -m 755 %{buildroot}%{_mandir}/man1/
 install -m 644 nxtvepg.1 %{buildroot}%{_mandir}/man1/
-bzip2 $RPM_BUILD_ROOT%_mandir/man1/*
 
 # remove unwanted file
-rm -rf $RPM_BUILD_ROOT%_prefix/man/man1/*
+rm -rf %{buildroot}%{_prefix}/man/man1/*
 
 # menu
-install %{SOURCE1} -D -m 644 $RPM_BUILD_ROOT%{_miconsdir}/%{name}.png
-install %{SOURCE2} -D -m 644 $RPM_BUILD_ROOT%{_iconsdir}/%{name}.png
-install %{SOURCE3} -D -m 644 $RPM_BUILD_ROOT%{_liconsdir}/%{name}.png
+install %{SOURCE1} -D -m 644 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+install %{SOURCE2} -D -m 644 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install %{SOURCE3} -D -m 644 %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=Nxtvepg
 Comment=NexTView EPG decoder and browser
@@ -79,21 +71,19 @@ Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=X-MandrivaLinux-Multimedia-Video;AudioVideo;Video;AudioVideoEditing;Recorder;
+Categories=AudioVideo;Video;AudioVideoEditing;Recorder;
 EOF
 			
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files 
 %defattr(-,root,root)
 %doc README CHANGES COPYRIGHT TODO nxtvepg.pod pod2help.pl manual.html
-%{_bindir}/nxtvepg
-%{_iconsdir}/%{name}.png
+%{_bindir}/%{name}
+%{_bindir}/%{name}d
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/mandriva-%{name}.desktop
-%{_liconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
-%{_prefix}/X11R6/%{_lib}/X11/app-defaults/*
+%{_libdir}/X11/app-defaults/*
 %attr(644,root,root) %{_mandir}/man1/*
-
 
