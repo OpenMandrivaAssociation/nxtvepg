@@ -1,8 +1,6 @@
-%define tclver	8.5	
-
 Name:		nxtvepg
 Version:	2.8.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	NexTView EPG decoder and browser
 License:	GPLv2+
 Source0:	%{name}-%{version}.tar.gz
@@ -41,7 +39,7 @@ refer to the documentation in the "Help" menus or the UNIX manual page.
 %setup -q
 
 %build
-make prefix="%{prefix}" TCL_VER=%{tclver}
+make prefix="%{prefix}" TCL_VER=%{tcl_version} TCL_LIBRARY_PATH=%{_datadir}/tcl%{tcl_version} TK_LIBRARY_PATH=%{_datadir}/tk%{tcl_version}
 
 %install
 rm -rf %{buildroot}
