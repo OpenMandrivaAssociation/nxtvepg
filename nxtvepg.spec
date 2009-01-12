@@ -9,7 +9,7 @@ URL:		http://nxtvepg.sourceforge.net/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}-icon-16.png
 Source2:	%{name}-icon-32.png
-Source3:	%{name}-icon-48.pg
+Source3:	%{name}-icon-48.png
 
 BuildRequires:	X11-devel 
 BuildRequires:	tk
@@ -42,20 +42,14 @@ refer to the documentation in the "Help" menus or the UNIX manual page.
 %setup -q
 
 %build
-make prefix="%{prefix}" TCL_VER=%{tcl_version} TCL_LIBRARY_PATH=%{_datadir}/tcl%{tcl_version} TK_LIBRARY_PATH=%{_datadir}/tk%{tcl_version}
+make prefix="%{_prefix}" TCL_VER=%{tcl_version} \
+ TCL_LIBRARY_PATH=%{_datadir}/tcl%{tcl_version} \
+ TK_LIBRARY_PATH=%{_datadir}/tk%{tcl_version}
 
 %install
 rm -rf %{buildroot}
-export resdir=%{buildroot}%{_libdir}/X11/
-make prefix=%{buildroot}%{_prefix} resdir=%{buildroot}%{_libdir}/X11/ mandir=%{buildroot}%{_mandir}/man1 install 
-
-strip %{buildroot}%{_bindir}/nxtvepg
-chmod 644 CHANGES README
-install -d -m 755 %{buildroot}%{_mandir}/man1/
-install -m 644 nxtvepg.1 %{buildroot}%{_mandir}/man1/
-
-# remove unwanted file
-rm -rf %{buildroot}%{_prefix}/man/man1/*
+make ROOT=%{buildroot} prefix=%{_prefix} resdir=%{buildroot}%{_libdir}/X11 \
+ mandir=%{buildroot}%{_mandir}/man1 install
 
 # menu
 install %{SOURCE1} -D -m 644 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
@@ -79,12 +73,13 @@ EOF
 rm -rf %{buildroot}
 
 %files 
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
 %doc README CHANGES COPYRIGHT TODO nxtvepg.pod pod2help.pl manual.html
-%{_bindir}/%{name}
-%{_bindir}/%{name}d
+%attr(0755,root,root) %{_bindir}/%{name}
+%attr(0755,root,root) %{_bindir}/%{name}d
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/%{name}
 %{_libdir}/X11/app-defaults/*
-%attr(644,root,root) %{_mandir}/man1/*
+%{_mandir}/man1/*
 
