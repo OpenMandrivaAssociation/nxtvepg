@@ -1,22 +1,25 @@
-Name:		nxtvepg
-Version:	2.8.0
-Release:	%mkrel 4
+Name:			nxtvepg
+Version:		2.8.1
+Release:		%mkrel 1
+
 Summary:	NexTView EPG decoder and browser
 License:	GPLv2+
+Group:		Video
+URL:		http://nxtvepg.sourceforge.net/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}-icon-16.png
 Source2:	%{name}-icon-32.png
-Source3:	%{name}-icon-48.png
-URL:		http://nxtvepg.sourceforge.net/
-Group:		Video	
+Source3:	%{name}-icon-48.pg
+
 BuildRequires:	X11-devel 
 BuildRequires:	tk
 BuildRequires:	tk-devel
 BuildRequires:	tcl
 BuildRequires:	tcl-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}
+
 Requires:	tcl
 Requires:	tk
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 This is a decoder and browser for nexTView - an Electronic TV Programme Guide
