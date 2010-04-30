@@ -11,7 +11,8 @@ Source1:	%{name}-icon-16.png
 Source2:	%{name}-icon-32.png
 Source3:	%{name}-icon-48.png
 
-BuildRequires:	X11-devel 
+BuildRequires:	libx11-devel
+BuildRequires:	libxmu-devel
 BuildRequires:	tk
 BuildRequires:	tk-devel
 BuildRequires:	tcl
