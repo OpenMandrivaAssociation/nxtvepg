@@ -84,3 +84,81 @@ rm -rf %{buildroot}
 %{_libdir}/X11/app-defaults/*
 %{_mandir}/man1/*
 
+
+
+%changelog
+* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 2.8.1-3mdv2011.0
++ Revision: 613113
+- the mass rebuild of 2010.1 packages
+
+* Fri Apr 30 2010 Funda Wang <fwang@mandriva.org> 2.8.1-2mdv2010.1
++ Revision: 541226
+- update BR
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Mon Jan 12 2009 Guillaume Bedot <littletux@mandriva.org> 2.8.1-1mdv2009.1
++ Revision: 328705
+- Build fixes
+- Release 2.8.1
+
+* Fri Dec 05 2008 Adam Williamson <awilliamson@mandriva.org> 2.8.0-4mdv2009.1
++ Revision: 310196
+- adjust for new location of tcl stuff
+- rebuild for new tcl
+
+* Wed Jul 30 2008 Thierry Vignaud <tv@mandriva.org> 2.8.0-3mdv2009.0
++ Revision: 254151
+- rebuild
+
+* Sat Jan 12 2008 Adam Williamson <awilliamson@mandriva.org> 2.8.0-1mdv2008.1
++ Revision: 149662
+- rebuild for new tcl/tk
+- don't manually bzip the manpages
+- drop Mandriva-specific category from XDG menu
+- fd.o icons
+- new license policy
+- spec clean
+- new release 2.8.0
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - kill desktop-file-validate's 'warning: key "Encoding" in group "Desktop Entry" is deprecated'
+
+
+* Wed Mar 14 2007 Nicolas LÃ©cureuil <neoclust@mandriva.org> 2.7.7-2mdv2007.1
++ Revision: 143565
+- Fix XDG menu
+
+* Mon Jan 22 2007 Lenny Cartier <lenny@mandriva.com> 2.7.7-1mdv2007.1
++ Revision: 111752
+- Update to 2.7.7
+- Import nxtvepg
+
+* Wed Apr 19 2006 Michael Scherer <misc@mandriva.org> 2.7.6-5mdk
+- Requires tk, really fix #21928
+
+* Wed Apr 19 2006 Michael Scherer <misc@mandriva.org> 2.7.6-4mdk
+- Requires tcl ( fix #21928 )
+
+* Tue Jan 03 2006 Oden Eriksson <oeriksson@mandriva.com> 2.7.6-3mdk
+- rebuilt against soname aware deps (tcl/tk)
+- fix deps
+- added some lib64 fixes
+
+* Thu Oct 06 2005 Nicolas Lécureuil <neoclust@mandriva.org> 2.7.6-2mdk
+- BuildRequires Fix
+
+* Wed Oct 05 2005 Nicolas Lécureuil <neoclust@mandriva.org> 2.7.6-1mdk
+- 2.7.6
+
+* Wed Mar 09 2005 Laurent Culioli <laurent@mandrake.org> 2.7.4-1mdk
+- 2.7.4
+
+* Wed Jun 16 2004 Laurent Culioli <laurent@mandrake.org> 2.7.0-1mdk
+- 2.7.0
+
