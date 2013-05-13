@@ -1,6 +1,6 @@
 Name:			nxtvepg
 Version:		2.8.1
-Release:		%mkrel 3
+Release:		4
 
 Summary:	NexTView EPG decoder and browser
 License:	GPLv2+
@@ -17,7 +17,6 @@ BuildRequires:	tk
 BuildRequires:	tk-devel
 BuildRequires:	tcl
 BuildRequires:	tcl-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 Requires:	tcl
 Requires:	tk
