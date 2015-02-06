@@ -1,6 +1,6 @@
 Name:			nxtvepg
 Version:		2.8.1
-Release:		4
+Release:		5
 
 Summary:	NexTView EPG decoder and browser
 License:	GPLv2+
