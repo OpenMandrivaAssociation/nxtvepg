@@ -5,7 +5,7 @@ Release:		5
 Summary:	NexTView EPG decoder and browser
 License:	GPLv2+
 Group:		Video
-URL:		http://nxtvepg.sourceforge.net/
+URL:		https://nxtvepg.sourceforge.net/
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}-icon-16.png
 Source2:	%{name}-icon-32.png
